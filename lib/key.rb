@@ -15,13 +15,9 @@ class Key
   end
 
   def a
-    # @value.digits
     @value.digits.reverse[0..1].join#.to_i
-    #if @value.digits[0..1].join[0] == "0"#@value.digits[0..1].join.include?("0")
-
-    #elsif @value.digits[0..1].join[1] == "0"
-    #else @value.digits[0..1].join.to_i
-    #end
+    #this is a string value, may be changed to an integer
+    #but have to worry about padding
   end
 
   def b
