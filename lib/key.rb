@@ -1,5 +1,5 @@
 class Key
-  attr_reader :value
+  attr_accessor :value
 
   def initialize
     @value ||= key_generator
