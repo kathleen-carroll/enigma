@@ -3,7 +3,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/key'
 
-class PantryTest < Minitest::Test
+class KeyTest < Minitest::Test
   def setup
     @key1 = Key.new
   end
