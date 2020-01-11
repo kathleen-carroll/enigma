@@ -1,7 +1,10 @@
 class Shift
+  attr_reader :characters
+
   def initialize(key, offset)
     @key = key
     @offset = offset
+    @characters = ("a".."z").to_a << " "
   end
 
   def a
@@ -18,5 +21,14 @@ class Shift
 
   def d
     @key.d.to_i + @offset.d.to_i
+  end
+
+  def character_position
+    num = 1
+    character_position = @characters.reduce({}) do |character_position, character| #length.times do
+      character_position[num.to_s] = character
+      num += 1
+      character_position
+    end
   end
 end

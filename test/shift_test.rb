@@ -26,4 +26,10 @@ class ShiftTest < Minitest::Test
     assert_equal 65+0, shift2.c
     assert_equal 59+0, shift2.d
   end
+
+  def test_character_array_and_position_hash
+    assert_equal 27, @shift.characters.length
+    assert_equal " ", @shift.character_position["27"]
+    assert_equal "d", @shift.character_position["4"]
+  end
 end
