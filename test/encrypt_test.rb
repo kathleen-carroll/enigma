@@ -18,6 +18,7 @@ class ShiftTest < Minitest::Test
     @encrypt = Encrypt.new(@message, @key1, @offset1)
     @encrypt2 = Encrypt.new(@message2, @key1, @offset1)
     @encrypt3 = Encrypt.new(@message3, @key1, @offset1)
+    @encrypt4 = Encrypt.new(@message)
     #a = 23 + 4 = 27
     #b = 34 + 4 = 38
     #c = 43 + 0 = 43
@@ -49,5 +50,13 @@ class ShiftTest < Minitest::Test
     assert_equal "klillpur", @encrypt.shift_letters(@shift)
     assert_equal "klillpu!", @encrypt2.shift_letters(@shift)
     assert_equal "kki!lpu_", @encrypt3.shift_letters(@shift)
+  end
+
+  def test_it_can_create_new_key_and_offset
+    assert_instance_of Key, @encrypt4.key
+    assert_equal 5, @encrypt4.key.value.to_s.length
+    assert_instance_of Integer, @encrypt4.key.value
+    assert_instance_of Offset, @encrypt4.offset
+    assert_equal '130120', @encrypt4.offset.date
   end
 end
