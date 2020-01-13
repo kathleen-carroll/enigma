@@ -6,7 +6,7 @@ require './lib/offset'
 require './lib/key'
 require './lib/encrypt'
 
-class ShiftTest < Minitest::Test
+class EncryptTest < Minitest::Test
   def setup
     @offset1 = Offset.new
     @key1 = Key.new
