@@ -7,6 +7,7 @@ class OffsetTest < Minitest::Test
   def setup
     @offset1 = Offset.new
     @offset2 = Offset.new("250894")
+    require "pry"; binding.pry
   end
 
   def test_it_exists

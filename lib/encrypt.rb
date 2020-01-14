@@ -1,19 +1,38 @@
+require_relative "shift"
+
 class Encrypt
   attr_reader :key, :offset, :message
 
-  def initialize(message, key_value = key_gen, offset_value = offset_gen)
+  def initialize(message, key_value = key_gen, offset_value = offset_gen)#key_value = key_gen, offset_value = offset_gen)
     @message = message
-    @key = Key.new(key_value)
+    @offset ||= create_offset(offset_value)
+    @key ||= create_key(key_value)
+    # @key_value = key_value
     # Key.new
     # @key.value = key_value
-    @offset = Offset.new(offset_value)
+    # @offset_value = offset_value #Offset.new(offset_value)
     # Offset.new
     # @offset.date = offset_value
   end
 
-  def key_gen
-    @key = Key.new
+  def create_key(key_value)
+    @key = Key.new(key_value)
   end
+
+  def create_offset(offset_value)
+    @offset = Offset.new(offset_value)
+  end
+
+  def key_gen
+    # if @key_value = nil
+      @key = Key.new
+    # else @key = Key.new(@key_value)
+    # end
+  end
+
+  # def offset
+  #   @offset = Offset.new(offset_value)
+  # end
 
   def offset_gen
     @offset = Offset.new
@@ -65,7 +84,10 @@ class Encrypt
     # end
   end
 
-  def shift_letters(shift)
+  def shift_letters #(shift)
+    # key
+    # offset
+    shift = Shift.new(@key, @offset)
     # encoded = {}
     a = []
     b = []
