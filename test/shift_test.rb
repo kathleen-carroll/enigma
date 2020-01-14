@@ -17,8 +17,8 @@ class ShiftTest < Minitest::Test
   end
 
   def test_it_can_find_shift_values
-    key = Key.new
-    key.value = 73659
+    key = Key.new("73659")
+    # key.value = 73659
     shift2 = Shift.new(key, @offset1)
     #offset = 4400
     assert_equal 73+4, shift2.a
