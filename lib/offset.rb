@@ -1,8 +1,9 @@
 class Offset
-  attr_reader :date
+  attr_accessor :date
 
-  def initialize
-    @date ||= get_date
+  def initialize(date = get_date)
+    @date = date
+    # ||= get_date
   end
 
   def get_date
