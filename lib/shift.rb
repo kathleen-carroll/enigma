@@ -1,9 +1,9 @@
 class Shift
-  attr_reader :characters
+  attr_reader :characters, :key, :offset
 
-  def initialize(key, offset)
+  def initialize(key, offset_value)
     @key = key
-    @offset = offset
+    @offset = offset_value
     @characters = ("a".."z").to_a << " "
   end
 
