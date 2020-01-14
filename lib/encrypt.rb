@@ -1,10 +1,14 @@
 class Encrypt
   attr_reader :key, :offset, :message
 
-  def initialize(message, key = key_gen, offset = offset_gen)
+  def initialize(message, key_value = key_gen, offset_value = offset_gen)
     @message = message
-    @key = key
-    @offset = offset
+    @key = Key.new(key_value)
+    # Key.new
+    # @key.value = key_value
+    @offset = Offset.new(offset_value)
+    # Offset.new
+    # @offset.date = offset_value
   end
 
   def key_gen

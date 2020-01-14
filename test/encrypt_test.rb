@@ -11,13 +11,14 @@ class EncryptTest < Minitest::Test
     @offset1 = Offset.new
     @key1 = Key.new
     @key1.value = 23431
+    value = 23431
     @shift = Shift.new(@key1, @offset1)
     @message = "Kathleen"
     @message2 = "Kathlee!"
     @message3 = "K t!lee_"
-    @encrypt = Encrypt.new(@message, @key1, @offset1)
-    @encrypt2 = Encrypt.new(@message2, @key1, @offset1)
-    @encrypt3 = Encrypt.new(@message3, @key1, @offset1)
+    @encrypt = Encrypt.new(@message, value, @offset1)
+    @encrypt2 = Encrypt.new(@message2, value, @offset1)
+    @encrypt3 = Encrypt.new(@message3, value, @offset1)
     @encrypt4 = Encrypt.new(@message)
     #a = 23 + 4 = 27
     #b = 34 + 4 = 38
@@ -54,6 +55,7 @@ class EncryptTest < Minitest::Test
 
   def test_it_can_create_new_key_and_offset
     assert_instance_of Key, @encrypt4.key
+    require "pry"; binding.pry
     assert_equal 5, @encrypt4.key.value.to_s.length
     assert_instance_of Integer, @encrypt4.key.value
     assert_instance_of Offset, @encrypt4.offset
