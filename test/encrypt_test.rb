@@ -12,7 +12,7 @@ class EncryptTest < Minitest::Test
     @key1 = Key.new("23431")
     @key1.value = 23431
     value = "23431"
-    offset = "250894"
+    offset = "250894" #9236
     # @shift = Shift.new(@key1, @offset1)
     @message = "Kathleen"
     @message2 = "Kathlee!"
@@ -53,6 +53,7 @@ class EncryptTest < Minitest::Test
     assert_equal "klillpur", @encrypt.shift_letters#(@shift)
     assert_equal "klillpu!", @encrypt2.shift_letters#(@shift)
     assert_equal "kki!lpu_", @encrypt3.shift_letters#(@shift)
+    assert_equal "pjlrqnxx", @encrypt1.shift_letters
   end
 
   def test_it_can_create_new_key_and_offset
