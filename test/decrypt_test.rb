@@ -31,6 +31,9 @@ class DecryptTest < Minitest::Test
     assert_equal "130120", @decrypt2.offset.date
   end
 
-  def test_it_has_attributes
+  def test_it_can_breakdown_the_message
+    # expected
+    # assert_equal expected,
+    @decrypt.decode
   end
 end
