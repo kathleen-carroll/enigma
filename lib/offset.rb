@@ -1,5 +1,5 @@
 class Offset
-  attr_accessor :date
+  attr_reader :date
 
   def initialize(date = get_date)
     @date = date
@@ -12,28 +12,32 @@ class Offset
     mm = Date.today.month.to_s.rjust(2, "0")
     dd = Date.today.day.to_s.rjust(2, "0")
     @date = dd + mm + yy
-    get_date_code
-    @date
+    # get_date_code
+    # @date
   end
 
   def get_date_code
     square = @date.to_i ** 2
-    @last_digits = square.to_s[-4..-1]
+    last_digits = square.to_s[-4..-1]
   end
 
   def a
-    @last_digits[0]
+    get_date_code[0]
+    # @last_digits[0]
   end
 
   def b
-    @last_digits[1]
+    get_date_code[1]
+    # @last_digits[1]
   end
 
   def c
-    @last_digits[2]
+    get_date_code[2]
+    # @last_digits[2]
   end
 
   def d
-    @last_digits[3]
+    get_date_code[3]
+    # @last_digits[3]
   end
 end

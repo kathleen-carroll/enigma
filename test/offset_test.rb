@@ -25,5 +25,9 @@ class OffsetTest < Minitest::Test
     assert_equal "4", @offset1.b
     assert_equal "0", @offset1.c
     assert_equal "0", @offset1.d
+    assert_equal "9", @offset2.a
+    assert_equal "2", @offset2.b
+    assert_equal "3", @offset2.c
+    assert_equal "6", @offset2.d
   end
 end
