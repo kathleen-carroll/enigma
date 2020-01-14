@@ -1,8 +1,9 @@
 class Key
   attr_accessor :value
 
-  def initialize
-    @value ||= key_generator
+  def initialize(key_value = key_generator)
+    @value = key_value
+    # ||= key_generator
   end
 
   def key_generator
@@ -11,24 +12,29 @@ class Key
     key_num.times do
       key += rand(0..9).to_s
     end
-    key.to_i
+    key
+    # .to_i
   end
 
   def a
-    @value.digits.reverse[0..1].join#.to_i
+    # @value.to_i.digits.reverse[0..1].join#.to_i
+    @value[0..1]
     #this is a string value, may be changed to an integer
     #but have to worry about padding
   end
 
   def b
-    @value.digits.reverse[1..2].join
+    # @value.to_i.digits.reverse[1..2].join
+    @value[1..2]
   end
 
   def c
-    @value.digits.reverse[2..3].join
+    # @value.to_i.digits.reverse[2..3].join
+    @value[2..3]
   end
 
   def d
-    @value.digits.reverse[3..4].join
+    # @value.to_i.digits.reverse[3..4].join
+    @value[3..4]
   end
 end
