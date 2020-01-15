@@ -1,6 +1,7 @@
 require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'mocha/minitest'
 require './lib/key'
 
 class KeyTest < Minitest::Test
@@ -15,8 +16,13 @@ class KeyTest < Minitest::Test
   end
 
   def test_it_generates_new_key
+    key = mock("23770")
     assert_equal 5, @key1.value.length
     assert_equal "23435", @key2.value
+    
+    @key1.stub(:key_generator, "23770") do
+      assert_equal "23770", @key1.key_generator
+    end
   end
 
   def test_it_can_find_2_digit_groups
