@@ -14,7 +14,8 @@ enigma = Enigma.new
 encrypted_text = enigma.encrypt(incoming_text)
 
 writer = File.open(ARGV[1], "w")
-writer.write(encrypted_text)
+# require "pry"; binding.pry
+writer.write(encrypted_text[:encryption])
 writer.close
 
 # puts incoming_text
