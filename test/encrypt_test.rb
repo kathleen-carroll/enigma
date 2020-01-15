@@ -53,12 +53,29 @@ class EncryptTest < Minitest::Test
   end
 
   def test_it_can_shift_the_letters
-    skip
-    assert_equal "klillpur", @encrypt.shift_letters#(@shift)
-    assert_equal "klillpu!", @encrypt2.shift_letters#(@shift)
-    assert_equal ["l", "!"], @encrypt2.d
-    assert_equal "kki!lpu_", @encrypt3.shift_letters#(@shift)
-    assert_equal "pjlrqnxx", @encrypt1.shift_letters
+    expected1 = {
+      :a => ["k", "l"],
+      :b => ["l", "p"],
+      :c => ["i", "u"],
+      :d => ["l", "r"]
+    }
+    expected2 = {:a => ["k", "l"],
+      :b => ["l", "p"],
+      :c => ["i", "u"],
+      :d => ["l", "!"]}
+    expected3 = {:a => ["k", "l"],
+      :b => ["k", "p"],
+      :c => ["i", "u"],
+      :d => ["!", "_"]}
+    expected4 = {:a => ["p", "q"],
+      :b => ["j", "n"],
+      :c => ["l", "x"],
+      :d => ["r", "x"]}
+      
+    assert_equal expected1, @encrypt.shift_letters#(@shift)
+    assert_equal expected2, @encrypt2.shift_letters#(@shift)
+    assert_equal expected3, @encrypt3.shift_letters#(@shift)
+    assert_equal expected4, @encrypt1.shift_letters
   end
 
   def test_it_can_encode_the_shifted_letters
