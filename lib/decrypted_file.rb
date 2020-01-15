@@ -7,17 +7,16 @@ require 'date'
 
 handle = File.open(ARGV[0], "r")
 
-incoming_text = handle.read 
+incoming_text = handle.read
 # incoming_text2 = handle.rewind
 # incoming_text3 = handle.readlines
 
 handle.close
-require "pry"; binding.pry
 enigma = Enigma.new
-decrypted_text = enigma.decrypt(incoming_text)
+decrypted_text = enigma.decrypt(incoming_text.chomp, ARGV[2], ARGV[3])
 
 writer = File.open(ARGV[1], "w")
-writer.write(decrypted_text)
+writer.write(decrypted_text[:decryption])
 writer.close
 
 # puts incoming_text
