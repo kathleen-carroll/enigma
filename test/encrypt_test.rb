@@ -17,11 +17,13 @@ class EncryptTest < Minitest::Test
     @message = "Kathleen"
     @message2 = "Kathlee!"
     @message3 = "K t!lee_"
+    @message4 = "K!!h!een"
     @encrypt = Encrypt.new(@message, value)
     @encrypt1 = Encrypt.new(@message, value, offset)
     @encrypt2 = Encrypt.new(@message2, value)
     @encrypt3 = Encrypt.new(@message3, value)
     @encrypt4 = Encrypt.new(@message)
+    @encrypt5 = Encrypt.new(@message4, value)
     #a = 23 + 4 = 27
     #b = 34 + 4 = 38
     #c = 43 + 0 = 43
@@ -51,13 +53,29 @@ class EncryptTest < Minitest::Test
   end
 
   def test_it_can_shift_the_letters
-    skip
-    assert_equal "klillpur", @encrypt.shift_letters#(@shift)
-    assert_equal "klillpu!", @encrypt2.shift_letters#(@shift)
-    require "pry"; binding.pry
-    assert_equal ["l", "!"], @encrypt2.d
-    assert_equal "kki!lpu_", @encrypt3.shift_letters#(@shift)
-    assert_equal "pjlrqnxx", @encrypt1.shift_letters
+    expected1 = {
+      :a => ["k", "l"],
+      :b => ["l", "p"],
+      :c => ["i", "u"],
+      :d => ["l", "r"]
+    }
+    expected2 = {:a => ["k", "l"],
+      :b => ["l", "p"],
+      :c => ["i", "u"],
+      :d => ["l", "!"]}
+    expected3 = {:a => ["k", "l"],
+      :b => ["k", "p"],
+      :c => ["i", "u"],
+      :d => ["!", "_"]}
+    expected4 = {:a => ["p", "q"],
+      :b => ["j", "n"],
+      :c => ["l", "x"],
+      :d => ["r", "x"]}
+      
+    assert_equal expected1, @encrypt.shift_letters#(@shift)
+    assert_equal expected2, @encrypt2.shift_letters#(@shift)
+    assert_equal expected3, @encrypt3.shift_letters#(@shift)
+    assert_equal expected4, @encrypt1.shift_letters
   end
 
   def test_it_can_encode_the_shifted_letters
@@ -65,6 +83,10 @@ class EncryptTest < Minitest::Test
     @encrypt2.shift_letters
     assert_equal ["l", "!"], @encrypt2.d
     assert_equal "klillpu!", @encrypt2.encode#(@shift)
+    @encrypt5.shift_letters
+    assert_equal ["k", "!"], @encrypt5.a
+    assert_equal ["!", "p"], @encrypt5.b
+    assert_equal ["!", "u"], @encrypt5.c
     assert_equal "kki!lpu_", @encrypt3.encode#(@shift)
     assert_equal "pjlrqnxx", @encrypt1.encode
   end

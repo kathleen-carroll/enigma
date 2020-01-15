@@ -17,10 +17,8 @@ class Enigma
     {encryption: @encrypt_message, key: @encryption.key.value, date: @encryption.offset.date}
   end
 
-  def decrypt(message, key = nil, offset = nil)
-    if offset == nil && key == nil
-      decrypt = Decrypt.new(message)
-    elsif offset == nil
+  def decrypt(message, key, offset = nil)
+    if offset == nil
       decrypt = Decrypt.new(message, key)
     else
       decrypt = Decrypt.new(message, key, offset)

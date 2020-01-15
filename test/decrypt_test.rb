@@ -18,12 +18,14 @@ class DecryptTest < Minitest::Test
     @decrypt_message2 = "klillpur"
     @decrypt_message3 = "klillpu!"
     @decrypt_message4 = "kki!lpu_"
+    @decrypt_message5 = "K!!l!pur"
     @encrypt = Encrypt.new(@message, value, offset)
     @encrypt2 = Encrypt.new(@message, value)
     @decrypt = Decrypt.new(@decrypt_message, value, offset)
     @decrypt2 = Decrypt.new(@decrypt_message2, value)
     @decrypt3 = Decrypt.new(@decrypt_message3, value)
     @decrypt4 = Decrypt.new(@decrypt_message4, value)
+    @decrypt5 = Decrypt.new(@decrypt_message5, value)
   end
 
   def test_it_exists
@@ -37,9 +39,46 @@ class DecryptTest < Minitest::Test
     assert_equal "140120", @decrypt2.offset.date
   end
 
+  def test_it_shifts_letters_right
+    expected1 = {
+      "a" => ["p", "q"],
+      "b" => ["j", "n"],
+      "c" => ["l", "x"],
+      "d" => ["r", "x"]
+    }
+    expected2 = {"a" => ["k", "l"],
+      "b" => ["l", "p"],
+      "c" => ["i", "u"],
+      "d" => ["l", "r"]}
+    expected3 = {"a" => ["k", "l"],
+      "b" => ["l", "p"],
+      "c" => ["i", "u"],
+      "d" => ["l", "!"]}
+    expected4 = {"a" => ["k", "l"],
+      "b" => ["k", "p"],
+      "c" => ["i", "u"],
+      "d" => ["!", "_"]}
+
+    assert_equal expected1, @decrypt.shift_letters_assign#(@shift)
+    assert_equal expected2, @decrypt2.shift_letters_assign#(@shift)
+    assert_equal expected3, @decrypt3.shift_letters_assign#(@shift)
+    assert_equal expected4, @decrypt4.shift_letters_assign
+  end
+
+  def test_it_can_assign_unusual_values_correctly_to_groups
+    assert_equal "kathleen", @decrypt.decode#(@shift)
+    @decrypt2.shift_letters_assign
+    assert_equal ["h", "n"], @decrypt2.d
+    assert_equal "kathleen", @decrypt2.decode#(@shift)
+    @decrypt5.shift_letters_assign
+    assert_equal ["k", "!"], @decrypt5.a
+    assert_equal ["!", "e"], @decrypt5.b
+    assert_equal ["!", "e"], @decrypt5.c
+    # assert_equal "kki!lpu_", @decrypt3.encode#(@shift)
+    # assert_equal "pjlrqnxx", @decrypt1.encode
+  end
+
   def test_it_can_breakdown_the_message
-    # expected
-    # assert_equal expected,
     assert_equal "kathleen", @decrypt.decode
     assert_equal "kathleen", @decrypt2.decode
     assert_equal "kathlee!", @decrypt3.decode
