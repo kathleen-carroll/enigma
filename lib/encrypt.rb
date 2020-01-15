@@ -7,12 +7,6 @@ class Encrypt
     @message = message
     @offset ||= create_offset(offset_value)
     @key ||= create_key(key_value)
-    # @key_value = key_value
-    # Key.new
-    # @key.value = key_value
-    # @offset_value = offset_value #Offset.new(offset_value)
-    # Offset.new
-    # @offset.date = offset_value
   end
 
   def create_key(key_value)
@@ -24,15 +18,8 @@ class Encrypt
   end
 
   def key_gen
-    # if @key_value = nil
       @key ||= Key.new
-    # else @key = Key.new(@key_value)
-    # end
   end
-
-  # def offset
-  #   @offset = Offset.new(offset_value)
-  # end
 
   def offset_gen
     @offset ||= Offset.new
@@ -66,29 +53,10 @@ class Encrypt
              "d" => d}
 
     coded
-    # letters.reduce({}) do |coded, letter|
-    #   coded[letter] = "letter"
-    # end
-
-    # message_split.reduce({}) do |coded, letter|
-    #   require "pry"; binding.pry
-    #   if letters[num] == nil
-    #     num = 0
-    #     coded[letter] = letters[num]
-    #     num += 1
-    #   else
-    #     coded[letter] = letters[num]
-    #     num += 1
-    #   end
-    #   coded
-    # end
   end
 
-  def shift_letters_arrays #(shift)
-    # key
-    # offset
+  def shift_letters_arrays
     shift = Shift.new(@key, @offset)
-    # encoded = {}
     @a = []
     @b = []
     @c = []

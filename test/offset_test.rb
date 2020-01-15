@@ -12,7 +12,7 @@ class OffsetTest < Minitest::Test
   end
 
   def test_it_has_attributes
-    assert_equal "130120", @offset1.date
+    assert_equal "150120", @offset1.date
     assert_equal "4400", @offset1.get_date_code
     assert_equal "250894", @offset2.date
     assert_equal "9236", @offset2.get_date_code

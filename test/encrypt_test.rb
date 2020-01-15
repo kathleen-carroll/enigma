@@ -12,8 +12,7 @@ class EncryptTest < Minitest::Test
     @key1 = Key.new("23431")
     @key1.value = 23431
     value = "23431"
-    offset = "250894" #9236
-    # @shift = Shift.new(@key1, @offset1)
+    offset = "250894"
     @message = "Kathleen"
     @message2 = "Kathlee!"
     @message3 = "K t!lee_"
@@ -24,19 +23,6 @@ class EncryptTest < Minitest::Test
     @encrypt3 = Encrypt.new(@message3, value)
     @encrypt4 = Encrypt.new(@message)
     @encrypt5 = Encrypt.new(@message4, value)
-    #a = 23 + 4 = 27
-    #b = 34 + 4 = 38
-    #c = 43 + 0 = 43
-    #d = 31 + 0 = 31
-
-    #k = k
-    #a = l
-    #t = i
-    #h = l
-    #l = l
-    #e = p
-    #e = u
-    #n = r
   end
 
   def test_it_exists
@@ -71,23 +57,23 @@ class EncryptTest < Minitest::Test
       :b => ["j", "n"],
       :c => ["l", "x"],
       :d => ["r", "x"]}
-      
-    assert_equal expected1, @encrypt.shift_letters#(@shift)
-    assert_equal expected2, @encrypt2.shift_letters#(@shift)
-    assert_equal expected3, @encrypt3.shift_letters#(@shift)
+
+    assert_equal expected1, @encrypt.shift_letters
+    assert_equal expected2, @encrypt2.shift_letters
+    assert_equal expected3, @encrypt3.shift_letters
     assert_equal expected4, @encrypt1.shift_letters
   end
 
   def test_it_can_encode_the_shifted_letters
-    assert_equal "klillpur", @encrypt.encode#(@shift)
+    assert_equal "klillpur", @encrypt.encode
     @encrypt2.shift_letters
     assert_equal ["l", "!"], @encrypt2.d
-    assert_equal "klillpu!", @encrypt2.encode#(@shift)
+    assert_equal "klillpu!", @encrypt2.encode
     @encrypt5.shift_letters
     assert_equal ["k", "!"], @encrypt5.a
     assert_equal ["!", "p"], @encrypt5.b
     assert_equal ["!", "u"], @encrypt5.c
-    assert_equal "kki!lpu_", @encrypt3.encode#(@shift)
+    assert_equal "kki!lpu_", @encrypt3.encode
     assert_equal "pjlrqnxx", @encrypt1.encode
   end
 
@@ -96,7 +82,6 @@ class EncryptTest < Minitest::Test
     assert_equal 5, @encrypt4.key.value.to_s.length
     assert_instance_of String, @encrypt4.key.value
     assert_instance_of Offset, @encrypt4.offset
-    # assert_equal '130120', @encrypt4.offset.date
   end
 
   def test_it_generates_random_key_and_offset

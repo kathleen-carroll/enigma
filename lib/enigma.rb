@@ -1,9 +1,5 @@
 class Enigma
   attr_reader :encryption, :encrypt_message
-  # def initialize
-  #   @encryption = Hash.new(0)
-  #   @decryption = Hash.new(0)
-  # end
 
   def encrypt(message, key = nil, offset = nil)
     if offset == nil && key == nil
@@ -13,7 +9,7 @@ class Enigma
     else @encryption = Encrypt.new(message, key, offset)
     end
 
-    @encrypt_message = @encryption.encode #shift_letters
+    @encrypt_message = @encryption.encode 
     {encryption: @encrypt_message, key: @encryption.key.value, date: @encryption.offset.date}
   end
 
