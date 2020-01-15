@@ -10,7 +10,7 @@ class Decrypt < Encrypt
   end
 
   def offset_gen
-    @offset = Offset.new
+    @offset ||= Offset.new
   end
 
   def decode

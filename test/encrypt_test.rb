@@ -47,13 +47,26 @@ class EncryptTest < Minitest::Test
              "c" => ["t", "e"],
              "d" => ["h", "n"]}
     assert_equal expected, @encrypt.message_breakout
+    assert_equal ["a", "e"], @encrypt.message_breakout["b"]
   end
 
   def test_it_can_shift_the_letters
+    skip
     assert_equal "klillpur", @encrypt.shift_letters#(@shift)
     assert_equal "klillpu!", @encrypt2.shift_letters#(@shift)
+    require "pry"; binding.pry
+    assert_equal ["l", "!"], @encrypt2.d
     assert_equal "kki!lpu_", @encrypt3.shift_letters#(@shift)
     assert_equal "pjlrqnxx", @encrypt1.shift_letters
+  end
+
+  def test_it_can_encode_the_shifted_letters
+    assert_equal "klillpur", @encrypt.encode#(@shift)
+    @encrypt2.shift_letters
+    assert_equal ["l", "!"], @encrypt2.d
+    assert_equal "klillpu!", @encrypt2.encode#(@shift)
+    assert_equal "kki!lpu_", @encrypt3.encode#(@shift)
+    assert_equal "pjlrqnxx", @encrypt1.encode
   end
 
   def test_it_can_create_new_key_and_offset
@@ -61,6 +74,16 @@ class EncryptTest < Minitest::Test
     assert_equal 5, @encrypt4.key.value.to_s.length
     assert_instance_of String, @encrypt4.key.value
     assert_instance_of Offset, @encrypt4.offset
-    assert_equal '130120', @encrypt4.offset.date
+    # assert_equal '130120', @encrypt4.offset.date
+  end
+
+  def test_it_generates_random_key_and_offset
+    @encrypt4.stub(:key, "23770") do
+      assert_equal "23770", @encrypt4.key
+    end
+
+    @encrypt4.stub(:offset, "8971") do
+      assert_equal "8971", @encrypt4.offset
+    end
   end
 end

@@ -1,13 +1,10 @@
 require_relative 'test_helper'
-# require 'minitest/autorun'
-# require 'minitest/pride'
 require './lib/offset'
 
 class OffsetTest < Minitest::Test
   def setup
     @offset1 = Offset.new
     @offset2 = Offset.new("250894")
-    require "pry"; binding.pry
   end
 
   def test_it_exists
