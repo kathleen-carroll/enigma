@@ -1,21 +1,16 @@
 # enigma
 
-#functionality
-
+functionality
 3
 
-#oop
-
+oop
 3.5
 
-#ruby conventions 
-
+ruby conventions 
 3
 
-#TDD
-
+TDD
 4
 
-#version control
-
+version control
 4
