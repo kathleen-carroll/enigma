@@ -84,7 +84,7 @@ class Encrypt
     # end
   end
 
-  def shift_letters #(shift)
+  def shift_letters_arrays #(shift)
     # key
     # offset
     shift = Shift.new(@key, @offset)
@@ -125,22 +125,26 @@ class Encrypt
     end
   end
 
-  def encode
-    shift_letters
+  def shift_letters
+    shift_letters_arrays
     encoded = {:a => @a,
                :b => @b,
                :c => @c,
                :d => @d}
 
     encoded
+  end
 
-    shift_letters = []
-    until encoded.values.flatten.length == 0
-      encoded.each do |shift_key, letters|
-        shift_letters << letters.first
+  def encode
+    letter_values = shift_letters
+
+    encoded_letters = []
+    until letter_values.values.flatten.length == 0
+      letter_values.each do |shift_key, letters|
+        encoded_letters << letters.first
         letters.shift
       end
     end
-    shift_letters.join
+    encoded_letters.join
   end
 end
