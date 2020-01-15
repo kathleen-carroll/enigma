@@ -38,12 +38,12 @@ class EngimaTest < Minitest::Test
   end
 
   def test_it_can_encrypt_and_decrypt_without_offset
-    expected_e = {:encryption=>"nib udmcxpu", :key=>"02715", :date=>"140120"}
+    expected_e = {:encryption=>"nib udmcxpu", :key=>"02715", :date=>"150120"}
     encrypted = @enigma.encrypt("hello world", "02715")
     assert_equal expected_e, encrypted
 
     decrypted = @enigma.decrypt(encrypted[:encryption], "02715")
-    expected_d = {:decryption=>"hello world", :key=>"02715", :date=>"140120"}
+    expected_d = {:decryption=>"hello world", :key=>"02715", :date=>"150120"}
     assert_equal expected_d, decrypted
     assert_equal "02715", decrypted[:key]
   end
@@ -62,7 +62,7 @@ class EngimaTest < Minitest::Test
 
     assert_instance_of Hash, enigma
     assert_equal 5, enigma[:key].length
-    assert_equal "140120", enigma[:date]
+    assert_equal "150120", enigma[:date]
 
     enigma.stub(:key, "12345") do
       assert_equal "12345", enigma.key

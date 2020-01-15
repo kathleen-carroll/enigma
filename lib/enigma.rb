@@ -9,11 +9,8 @@ class Enigma
     else @encryption = Encrypt.new(message, key, offset)
     end
 
-    @encrypt_message = @encryption.encode {
-      encryption: @encrypt_message,
-      key: @encryption.key.value, 
-      date: @encryption.offset.date
-    }
+    @encrypt_message = @encryption.encode 
+    {encryption: @encrypt_message, key: @encryption.key.value, date: @encryption.offset.date}
   end
 
   def decrypt(message, key, offset = nil)
@@ -24,10 +21,6 @@ class Enigma
     end
 
     decrypt_message = decrypt.decode
-    decryption = {
-      decryption: decrypt_message,
-      key: decrypt.key.value,
-      date: decrypt.offset.date
-    }
+    decryption = {decryption: decrypt_message, key: decrypt.key.value, date: decrypt.offset.date}
   end
 end
