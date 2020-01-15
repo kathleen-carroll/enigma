@@ -13,7 +13,7 @@ class Enigma
     else @encryption = Encrypt.new(message, key, offset)
     end
 
-    @encrypt_message = @encryption.shift_letters
+    @encrypt_message = @encryption.encode #shift_letters
     {encryption: @encrypt_message, key: @encryption.key.value, date: @encryption.offset.date}
   end
 

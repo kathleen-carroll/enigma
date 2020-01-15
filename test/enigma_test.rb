@@ -47,4 +47,28 @@ class EngimaTest < Minitest::Test
     assert_equal expected_d, decrypted
     assert_equal "02715", decrypted[:key]
   end
+
+  def test_it_can_encrypt_without_offset_or_key
+    enigma = @enigma.encrypt("hello world")
+
+    @enigma.stub(:encrypt, "12354") do
+      assert_equal "12354", @enigma.encrypt(@message)
+    end
+
+    @enigma.stub(:encrypt, "250894") do
+      assert_equal "250894", @enigma.encrypt(@message)
+    end
+
+    assert_instance_of Hash, enigma
+    assert_equal 5, enigma[:key].length
+    assert_equal "140120", enigma[:date]
+
+    enigma.stub(:key, "12345") do
+      assert_equal "12345", enigma.key
+    end
+
+    # enigma.stub(:date, "041194") do
+    #   assert_equal "041194", enigma.date
+    # end
+  end
 end
