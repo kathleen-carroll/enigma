@@ -11,7 +11,7 @@ class DecryptTest < Minitest::Test
     @key1 = Key.new
     @key1.value = 23431
     value = "23431"
-    offset = "250894" #9236
+    offset = "250894" 
     @shift = Shift.new(@key1, @offset1)
     @message = "Kathleen"
     @decrypt_message = "pjlrqnxx"
@@ -59,23 +59,21 @@ class DecryptTest < Minitest::Test
       "c" => ["i", "u"],
       "d" => ["!", "_"]}
 
-    assert_equal expected1, @decrypt.shift_letters_assign#(@shift)
-    assert_equal expected2, @decrypt2.shift_letters_assign#(@shift)
-    assert_equal expected3, @decrypt3.shift_letters_assign#(@shift)
+    assert_equal expected1, @decrypt.shift_letters_assign
+    assert_equal expected2, @decrypt2.shift_letters_assign
+    assert_equal expected3, @decrypt3.shift_letters_assign
     assert_equal expected4, @decrypt4.shift_letters_assign
   end
 
   def test_it_can_assign_unusual_values_correctly_to_groups
-    assert_equal "kathleen", @decrypt.decode#(@shift)
+    assert_equal "kathleen", @decrypt.decode
     @decrypt2.shift_letters_assign
     assert_equal ["h", "n"], @decrypt2.d
-    assert_equal "kathleen", @decrypt2.decode#(@shift)
+    assert_equal "kathleen", @decrypt2.decode
     @decrypt5.shift_letters_assign
     assert_equal ["k", "!"], @decrypt5.a
     assert_equal ["!", "e"], @decrypt5.b
     assert_equal ["!", "e"], @decrypt5.c
-    # assert_equal "kki!lpu_", @decrypt3.encode#(@shift)
-    # assert_equal "pjlrqnxx", @decrypt1.encode
   end
 
   def test_it_can_breakdown_the_message
