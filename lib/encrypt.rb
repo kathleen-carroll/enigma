@@ -25,7 +25,7 @@ class Encrypt
 
   def key_gen
     # if @key_value = nil
-      @key = Key.new
+      @key ||= Key.new
     # else @key = Key.new(@key_value)
     # end
   end
@@ -35,7 +35,7 @@ class Encrypt
   # end
 
   def offset_gen
-    @offset = Offset.new
+    @offset ||= Offset.new
   end
 
   def message_breakout
@@ -54,10 +54,10 @@ class Encrypt
     d = []
 
     groups.each do |group|
-      a << group[0]
-      b << group[1]
-      c << group[2]
-      d << group[3]
+      a << group[0] if group[0] != nil
+      b << group[1] if group[1] != nil
+      c << group[2] if group[2] != nil
+      d << group[3] if group[3] != nil
     end
 
     coded = {"a" => a,
