@@ -11,7 +11,7 @@ class DecryptTest < Minitest::Test
     @key1 = Key.new
     @key1.value = 23431
     value = "23431"
-    offset = "250894" 
+    offset = "250894"
     @shift = Shift.new(@key1, @offset1)
     @message = "Kathleen"
     @decrypt_message = "pjlrqnxx"
@@ -36,7 +36,7 @@ class DecryptTest < Minitest::Test
     assert_equal "23431", @decrypt.key.value
     assert_equal "250894", @decrypt.offset.date
     assert_equal "23431", @decrypt2.key.value
-    assert_equal "140120", @decrypt2.offset.date
+    assert_equal "150120", @decrypt2.offset.date
   end
 
   def test_it_shifts_letters_right
